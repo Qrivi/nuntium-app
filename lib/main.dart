@@ -27,18 +27,51 @@ class LoginPage extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 60.0),
+        padding: EdgeInsets.symmetric(
+            horizontal: 50.0,
+            vertical:
+                MediaQuery.of(context).viewInsets.bottom == 0 ? 60.0 : 10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: SvgPicture.asset(
-                    'assets/images/logo.svg',
-                  color: Theme.of(context).accentColor,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 60.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: SvgPicture.asset(
+                            'assets/images/logo.svg',
+                            color: Theme.of(context).accentColor,
+                          ),
+                        ),
+                        Text(
+                          'nuntium',
+                          style: TextStyle(
+                            fontSize: 21.0,
+                            fontFamily: 'Rubik',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 35.0,
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      color: Color(0xFF808080),
+                      indent: MediaQuery.of(context).size.width / 2 - 135,
+                      endIndent: MediaQuery.of(context).size.width / 2 - 135,
+                    ),
+                  ],
                 ),
               ),
             ),
