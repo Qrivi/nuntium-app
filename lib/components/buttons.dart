@@ -35,13 +35,17 @@ class _NTextButtonState extends State<NTextButton> {
           _held = false;
         });
       },
+      behavior: HitTestBehavior.translucent,
       child: AnimatedOpacity(
         opacity: _held ? .8 : 1,
         duration: Duration(milliseconds: 250),
-        child: Text(
-          this.widget.value,
-          style: TextStyle(
-              color: this.widget.color ?? Theme.of(context).accentColor),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.0),
+          child: Text(
+            this.widget.value,
+            style: TextStyle(
+                color: this.widget.color ?? Theme.of(context).accentColor),
+          ),
         ),
       ),
     );
