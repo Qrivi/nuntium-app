@@ -2,18 +2,18 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 
-class NTextButton extends StatefulWidget {
+class TextButton extends StatefulWidget {
   final Function onPressed;
   final String value;
   final Color color;
 
-  NTextButton({@required this.onPressed, @required this.value, this.color});
+  TextButton({@required this.onPressed, @required this.value, this.color});
 
   @override
-  _NTextButtonState createState() => _NTextButtonState();
+  _TextButtonState createState() => _TextButtonState();
 }
 
-class _NTextButtonState extends State<NTextButton> {
+class _TextButtonState extends State<TextButton> {
   bool _held = false;
 
   @override
@@ -52,18 +52,18 @@ class _NTextButtonState extends State<NTextButton> {
   }
 }
 
-class NRoundedButton extends StatefulWidget {
+class RoundedButton extends StatefulWidget {
   final Function onPressed;
   final String value;
   final double width;
 
-  NRoundedButton({@required this.onPressed, @required this.value, this.width});
+  RoundedButton({@required this.onPressed, @required this.value, this.width});
 
   @override
-  _NRoundedButtonState createState() => _NRoundedButtonState();
+  _RoundedButtonState createState() => _RoundedButtonState();
 }
 
-class _NRoundedButtonState extends State<NRoundedButton> {
+class _RoundedButtonState extends State<RoundedButton> {
   bool _held = false;
 
   @override

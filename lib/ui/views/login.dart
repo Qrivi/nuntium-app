@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nuntium/components/buttons.dart';
+import 'package:nuntium/ui/widgets/buttons.dart' as Buttons;
 
-class LoginPage extends StatelessWidget {
+class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
             Expanded(
@@ -29,14 +29,14 @@ class LoginPage extends StatelessWidget {
                       color: Theme.of(context).accentColor,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'nuntium',
                     style: TextStyle(
                       fontSize: 21.0,
                       fontFamily: 'Rubik',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 35.0,
                   ),
                 ],
@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: double.infinity,
                     height: 18.0,
                   ),
@@ -104,7 +104,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   if (MediaQuery.of(context).viewInsets.bottom == 0)
-                    NRoundedButton(
+                    Buttons.RoundedButton(
                       value: 'Sign in',
                       onPressed: () {
                         print('hi there');
@@ -122,14 +122,14 @@ class LoginPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    NTextButton(
+                    Buttons.TextButton(
                       onPressed: () {
                         print('hello');
                       },
                       value: 'Create an account?',
                       color: Color(0xFF808080),
                     ),
-                    NTextButton(
+                    Buttons.TextButton(
                       onPressed: () {
                         print('hello');
                       },
