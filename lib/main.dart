@@ -1,22 +1,29 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nuntium/components/buttons.dart';
-import 'package:nuntium/screens/loginpage.dart';
-import 'package:nuntium/themes.dart';
+import 'package:nuntium/services/locator.dart';
+import 'package:nuntium/ui/views/home.dart';
+import 'package:nuntium/ui/views/login.dart';
+import 'package:nuntium/config/themes.dart';
 
-void main() => runApp(Application());
+void main() {
+  setupServiceLocator();
+  runApp(Nuntium());
+}
 
-class Application extends StatelessWidget {
+class Nuntium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'nuntius',
+      title: 'nuntium',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: Platform.isAndroid || Platform.isIOS ? oledTheme : darkTheme,
-      home: LoginPage(),
+      initialRoute: 'login',
+      routes: {
+        'home': (context) => HomeView(),
+        'login': (context) => LoginView(),
+      },
     );
   }
 }
