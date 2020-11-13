@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nuntium/core/viewmodels/login.dart';
+import 'package:nuntium/generated/l10n.dart';
 import 'package:nuntium/ui/widgets/buttons.dart' as Buttons;
 
-final _loginViewModel = StateNotifierProvider<LoginViewModel>((ref){
+final _loginViewModel = StateNotifierProvider<LoginViewModel>((ref) {
   return LoginViewModel();
 });
 
@@ -37,8 +38,8 @@ class LoginView extends ConsumerWidget {
                       color: Theme.of(context).accentColor,
                     ),
                   ),
-                  const Text(
-                    'nuntium',
+                  Text(
+                    S.of(context).app_name,
                     style: TextStyle(
                       fontSize: 21.0,
                       fontFamily: 'Rubik',
@@ -58,8 +59,7 @@ class LoginView extends ConsumerWidget {
               ),
             ),
             SizedBox(
-              height:
-                  MediaQuery.of(context).viewInsets.bottom == 0 ? 100.0 : 10.0,
+              height: MediaQuery.of(context).viewInsets.bottom == 0 ? 100.0 : 10.0,
             ),
             Form(
               child: Column(
@@ -69,7 +69,7 @@ class LoginView extends ConsumerWidget {
                     textInputAction: TextInputAction.next,
                     cursorColor: Theme.of(context).accentColor,
                     decoration: InputDecoration(
-                      hintText: 'e-mail address',
+                      hintText: S.of(context).lbl_email,
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 28.0,
                         vertical: 18.0,
@@ -79,22 +79,63 @@ class LoginView extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: double.infinity,
-                    height: 18.0,
-                  ),
-                  TextField(
-                    obscureText: true,
-                    textInputAction: TextInputAction.done,
-                    cursorColor: Theme.of(context).accentColor,
-                    decoration: InputDecoration(
-                      hintText: 'password',
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 28.0,
-                        vertical: 18.0,
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 200),
+                    height: (loginState.formState == LoginFormState.login || loginState.formState == LoginFormState.register) ? 73.0 : 0.0,
+                    child: SingleChildScrollView(
+                      physics: NeverScrollableScrollPhysics(),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            width: double.infinity,
+                            height: 18.0,
+                          ),
+                          TextField(
+                            obscureText: true,
+                            textInputAction: TextInputAction.done,
+                            cursorColor: Theme.of(context).accentColor,
+                            decoration: InputDecoration(
+                              hintText: S.of(context).lbl_password,
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 28.0,
+                                vertical: 18.0,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                  ),
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 200),
+                    height: loginState.formState == LoginFormState.register ? 73.0 : 0.0,
+                    child: SingleChildScrollView(
+                      physics: NeverScrollableScrollPhysics(),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            width: double.infinity,
+                            height: 18.0,
+                          ),
+                          TextField(
+                            obscureText: true,
+                            textInputAction: TextInputAction.done,
+                            cursorColor: Theme.of(context).accentColor,
+                            decoration: InputDecoration(
+                              hintText: S.of(context).lbl_passwordRepeat,
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 28.0,
+                                vertical: 18.0,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -113,7 +154,11 @@ class LoginView extends ConsumerWidget {
                   ),
                   if (MediaQuery.of(context).viewInsets.bottom == 0)
                     Buttons.RoundedButton(
-                      value: 'Sign in',
+                      value: loginState.formState == LoginFormState.register
+                          ? S.of(context).lbl_register
+                          : loginState.formState == LoginFormState.login
+                              ? S.of(context).lbl_login
+                              : S.of(context).lbl_forgot,
                       onPressed: () {
                         print('hi there');
                       },
@@ -132,16 +177,16 @@ class LoginView extends ConsumerWidget {
                   children: [
                     Buttons.TextButton(
                       onPressed: () {
-                        print('hello');
+                        context.read(_loginViewModel).setFormState(LoginFormState.register);
                       },
-                      value: 'Create an account?',
+                      value: S.of(context).btn_createAccount,
                       color: Color(0xFF808080),
                     ),
                     Buttons.TextButton(
                       onPressed: () {
-                        print('hello');
+                        context.read(_loginViewModel).setFormState(LoginFormState.forgot);
                       },
-                      value: 'Forgot password?',
+                      value: S.of(context).btn_forgotPassword,
                       color: Color(0xFF808080),
                     ),
                   ],
