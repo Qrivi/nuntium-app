@@ -1,5 +1,5 @@
-import 'package:nuntium/core/models.dart';
-import 'package:nuntium/services/storage/storage.dart';
+import 'package:nuntium/core/services/entities.dart';
+import 'package:nuntium/core/services/storage/storage.dart';
 
 class DummyStorageService implements StorageService {
   @override

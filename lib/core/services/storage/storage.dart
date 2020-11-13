@@ -1,4 +1,4 @@
-import 'package:nuntium/core/models.dart';
+import 'package:nuntium/core/services/entities.dart';
 
 abstract class StorageService {
   Future cacheAccountData(Account account);

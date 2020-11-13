@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/all.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nuntium/core/viewmodels/login.dart';
 import 'package:nuntium/ui/widgets/buttons.dart' as Buttons;
 
-class LoginView extends StatelessWidget {
+final _loginViewModel = StateNotifierProvider<LoginViewModel>((ref){
+  return LoginViewModel();
+});
+
+class LoginView extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final loginState = watch(_loginViewModel.state);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -96,7 +104,7 @@ class LoginView extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 15.0),
                       child: Text(
-                        'Hmm... These are wrong.',
+                        loginState.error,
                         style: TextStyle(
                           color: Colors.orange,
                         ),

@@ -1,7 +1,7 @@
 import 'dart:convert' show jsonEncode, jsonDecode;
 
-import 'package:nuntium/core/models.dart';
-import 'package:nuntium/services/storage/storage.dart';
+import 'package:nuntium/core/services/entities.dart';
+import 'package:nuntium/core/services/storage/storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PersistentStorageService implements StorageService {

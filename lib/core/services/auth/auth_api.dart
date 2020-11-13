@@ -2,7 +2,7 @@ import 'dart:convert' show jsonEncode, jsonDecode;
 
 import 'package:http/http.dart' as http;
 import 'package:nuntium/config/constants.dart';
-import 'package:nuntium/core/models.dart';
+import 'package:nuntium/core/services/entities.dart';
 import 'package:nuntium/session.dart';
 
 import 'auth.dart';

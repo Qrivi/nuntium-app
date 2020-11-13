@@ -1,4 +1,4 @@
-import 'package:nuntium/core/models.dart';
+import 'package:nuntium/core/services/entities.dart';
 
 import 'auth.dart';
 
