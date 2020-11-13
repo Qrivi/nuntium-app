@@ -9,13 +9,16 @@ publish_to: 'none'
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.0
-  device_info: ^1.0.0
+  flutter_localizations:
+      sdk: flutter
   flutter_riverpod: ^0.12.1
   flutter_secure_storage: ^3.3.5
   flutter_svg: ^0.19.1
+  cupertino_icons: ^1.0.0
+  device_info: ^1.0.0
   get_it: ^5.0.1
   http: ^0.12.2
+  intl: ^0.16.1
   ios_utsname_ext: ^1.1.0
   jwt_decoder: ^1.0.3
   package_info: ^0.4.3+2
@@ -34,3 +37,7 @@ flutter:
     - family: Rubik
       fonts:
         - asset: assets/fonts/Rubik-Regular.ttf
+
+flutter_intl:
+  enabled: true
+  main_locale: en_US

@@ -1,0 +1,18 @@
+{
+  "@@locale": "en_US",
+  "app_name": "nuntium",
+  "lbl_email": "e-mail address",
+  "lbl_password": "password",
+  "lbl_passwordRepeat": "repeat password",
+  "lbl_register": "sign up",
+  "lbl_login": "sign in",
+  "lbl_forgot": "reset",
+  "btn_createAccount": "Create account?",
+  "btn_returningUser": "Already registered?",
+  "btn_forgotPassword": "Forgot password?",
+  "err_serverError": "Something went horribly wrong!",
+  "err_emptyEmail": "E-mail address is required!",
+  "err_invalidEmail": "E-mail address is invalid!",
+  "err_emptyPassword": "Password is required!",
+  "err_stupidPassword": "Password too easy to guess!"
+}

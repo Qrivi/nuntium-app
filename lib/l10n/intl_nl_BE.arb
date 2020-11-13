@@ -1,0 +1,18 @@
+{
+  "@@locale": "en_US",
+  "app_name": "nuntium",
+  "lbl_email": "e-mailadres",
+  "lbl_password": "wachtwoord",
+  "lbl_passwordRepeat": "herhaal wachtwoord",
+  "lbl_register": "registreren",
+  "lbl_login": "inloggen",
+  "lbl_forgot": "reset wachtwoord",
+  "btn_createAccount": "Account aanmaken?",
+  "btn_returningUser": "Al geregistreerd?",
+  "btn_forgotPassword": "Wachtwoord vergeten?",
+  "err_serverError": "Er ging iets goed mis!",
+  "err_emptyEmail": "E-mailadres is verplicht!",
+  "err_invalidEmail": "E-mailadres is ongeldig!",
+  "err_emptyPassword": "Wachtwoord is verplicht!",
+  "err_stupidPassword": "Wachtwoord is te simpel!"
+}
