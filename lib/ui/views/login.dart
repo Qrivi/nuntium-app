@@ -9,14 +9,14 @@ final _loginViewModel = StateNotifierProvider<LoginViewModel>((ref) {
   return LoginViewModel();
 });
 
-class LoginFormLayout {
+class LoginLayout {
   bool showPasswordField;
   bool showPasswordRepeatField;
   String buttonLabel;
   Buttons.TextButton leftButton;
   Buttons.TextButton rightButton;
 
-  LoginFormLayout(BuildContext context, LoginFormState formState) {
+  LoginLayout(BuildContext context, LoginFormState formState) {
     switch (formState) {
       case LoginFormState.login:
         this.showPasswordField = true;
@@ -85,7 +85,7 @@ class LoginView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final loginState = watch(_loginViewModel.state);
-    final loginFormLayout = LoginFormLayout(context, loginState.formState);
+    final loginLayout = LoginLayout(context, loginState.formState);
 
     return Scaffold(
       body: Padding(
@@ -140,7 +140,7 @@ class LoginView extends ConsumerWidget {
                 children: [
                   TextField(
                     keyboardType: TextInputType.emailAddress,
-                    textInputAction: loginState.formState == LoginFormState.forgot ? TextInputAction.done : TextInputAction.next,
+                    textInputAction: loginLayout.showPasswordField ? TextInputAction.next : TextInputAction.done,
                     cursorColor: Theme.of(context).accentColor,
                     decoration: InputDecoration(
                       hintText: S.of(context).lbl_email,
@@ -155,7 +155,7 @@ class LoginView extends ConsumerWidget {
                   ),
                   AnimatedContainer(
                     duration: Duration(milliseconds: 200),
-                    height: loginFormLayout.showPasswordField ? 73.0 : 0.0,
+                    height: loginLayout.showPasswordField ? 73.0 : 0.0,
                     child: SingleChildScrollView(
                       physics: NeverScrollableScrollPhysics(),
                       child: Column(
@@ -166,7 +166,7 @@ class LoginView extends ConsumerWidget {
                           ),
                           TextField(
                             obscureText: true,
-                            textInputAction: loginState.formState == LoginFormState.login ? TextInputAction.done : TextInputAction.next,
+                            textInputAction: loginLayout.showPasswordRepeatField ? TextInputAction.next : TextInputAction.done,
                             cursorColor: Theme.of(context).accentColor,
                             decoration: InputDecoration(
                               hintText: S.of(context).lbl_password,
@@ -185,7 +185,7 @@ class LoginView extends ConsumerWidget {
                   ),
                   AnimatedContainer(
                     duration: Duration(milliseconds: 200),
-                    height: loginFormLayout.showPasswordRepeatField ? 73.0 : 0.0,
+                    height: loginLayout.showPasswordRepeatField ? 73.0 : 0.0,
                     child: SingleChildScrollView(
                       physics: NeverScrollableScrollPhysics(),
                       child: Column(
@@ -228,7 +228,7 @@ class LoginView extends ConsumerWidget {
                   ),
                   if (MediaQuery.of(context).viewInsets.bottom == 0)
                     Buttons.RoundedButton(
-                      value: loginFormLayout.buttonLabel,
+                      value: loginLayout.buttonLabel,
                       onPressed: () {
                         print('hi there');
                       },
@@ -245,8 +245,8 @@ class LoginView extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    loginFormLayout.leftButton,
-                    loginFormLayout.rightButton,
+                    loginLayout.leftButton,
+                    loginLayout.rightButton,
                   ],
                 ),
               ),
