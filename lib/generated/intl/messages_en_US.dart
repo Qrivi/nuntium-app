@@ -22,19 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "app_name" : MessageLookupByLibrary.simpleMessage("nuntium"),
-    "btn_createAccount" : MessageLookupByLibrary.simpleMessage("Account aanmaken?"),
-    "btn_forgotPassword" : MessageLookupByLibrary.simpleMessage("Wachtwoord vergeten?"),
-    "btn_returningUser" : MessageLookupByLibrary.simpleMessage("Al geregistreerd?"),
-    "err_emptyEmail" : MessageLookupByLibrary.simpleMessage("E-mailadres is verplicht!"),
-    "err_emptyPassword" : MessageLookupByLibrary.simpleMessage("Wachtwoord is verplicht!"),
-    "err_invalidEmail" : MessageLookupByLibrary.simpleMessage("E-mailadres is ongeldig!"),
-    "err_serverError" : MessageLookupByLibrary.simpleMessage("Er ging iets goed mis!"),
-    "err_stupidPassword" : MessageLookupByLibrary.simpleMessage("Wachtwoord is te simpel!"),
-    "lbl_email" : MessageLookupByLibrary.simpleMessage("e-mailadres"),
-    "lbl_forgot" : MessageLookupByLibrary.simpleMessage("reset wachtwoord"),
-    "lbl_login" : MessageLookupByLibrary.simpleMessage("inloggen"),
-    "lbl_password" : MessageLookupByLibrary.simpleMessage("wachtwoord"),
-    "lbl_passwordRepeat" : MessageLookupByLibrary.simpleMessage("herhaal wachtwoord"),
-    "lbl_register" : MessageLookupByLibrary.simpleMessage("registreren")
+    "btn_createAccount" : MessageLookupByLibrary.simpleMessage("Create account?"),
+    "btn_forgotPassword" : MessageLookupByLibrary.simpleMessage("Forgot password?"),
+    "btn_returningUser" : MessageLookupByLibrary.simpleMessage("Already registered?"),
+    "err_emptyEmail" : MessageLookupByLibrary.simpleMessage("E-mail address is required!"),
+    "err_emptyPassword" : MessageLookupByLibrary.simpleMessage("Password is required!"),
+    "err_invalidEmail" : MessageLookupByLibrary.simpleMessage("E-mail address is invalid!"),
+    "err_serverError" : MessageLookupByLibrary.simpleMessage("Something went horribly wrong!"),
+    "err_stupidPassword" : MessageLookupByLibrary.simpleMessage("Password too easy to guess!"),
+    "lbl_email" : MessageLookupByLibrary.simpleMessage("e-mail address"),
+    "lbl_forgot" : MessageLookupByLibrary.simpleMessage("reset"),
+    "lbl_login" : MessageLookupByLibrary.simpleMessage("sign in"),
+    "lbl_password" : MessageLookupByLibrary.simpleMessage("password"),
+    "lbl_passwordRepeat" : MessageLookupByLibrary.simpleMessage("repeat password"),
+    "lbl_register" : MessageLookupByLibrary.simpleMessage("sign up")
   };
 }
