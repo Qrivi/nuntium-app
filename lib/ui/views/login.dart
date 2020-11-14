@@ -9,10 +9,83 @@ final _loginViewModel = StateNotifierProvider<LoginViewModel>((ref) {
   return LoginViewModel();
 });
 
+class LoginFormLayout {
+  bool showPasswordField;
+  bool showPasswordRepeatField;
+  String buttonLabel;
+  Buttons.TextButton leftButton;
+  Buttons.TextButton rightButton;
+
+  LoginFormLayout(BuildContext context, LoginFormState formState) {
+    switch (formState) {
+      case LoginFormState.login:
+        this.showPasswordField = true;
+        this.showPasswordRepeatField = false;
+        this.buttonLabel = S.of(context).lbl_login;
+        this.leftButton = _createTextButton(
+          S.of(context).btn_createAccount,
+          () {
+            context.read(_loginViewModel).setFormState(LoginFormState.register);
+          },
+        );
+        this.rightButton = _createTextButton(
+          S.of(context).btn_forgotPassword,
+          () {
+            context.read(_loginViewModel).setFormState(LoginFormState.forgot);
+          },
+        );
+        break;
+      case LoginFormState.register:
+        this.showPasswordField = true;
+        this.showPasswordRepeatField = true;
+        this.buttonLabel = S.of(context).lbl_register;
+        this.leftButton = _createTextButton(
+          S.of(context).btn_returningUser,
+          () {
+            context.read(_loginViewModel).setFormState(LoginFormState.login);
+          },
+        );
+        this.rightButton = _createTextButton(
+          S.of(context).btn_forgotPassword,
+          () {
+            context.read(_loginViewModel).setFormState(LoginFormState.forgot);
+          },
+        );
+        break;
+      case LoginFormState.forgot:
+        this.showPasswordField = false;
+        this.showPasswordRepeatField = false;
+        this.buttonLabel = S.of(context).lbl_forgot;
+        this.leftButton = _createTextButton(
+          S.of(context).btn_createAccount,
+          () {
+            context.read(_loginViewModel).setFormState(LoginFormState.register);
+          },
+        );
+        this.rightButton = _createTextButton(
+          S.of(context).btn_returningUser,
+          () {
+            context.read(_loginViewModel).setFormState(LoginFormState.login);
+          },
+        );
+        break;
+    }
+  }
+
+  Buttons.TextButton _createTextButton(String label, Function action) {
+    return Buttons.TextButton(
+      onPressed: action,
+      value: label,
+      color: Color(0xFF808080),
+    );
+  }
+}
+
 class LoginView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final loginState = watch(_loginViewModel.state);
+    final loginFormLayout = LoginFormLayout(context, loginState.formState);
 
     return Scaffold(
       body: Padding(
@@ -40,6 +113,7 @@ class LoginView extends ConsumerWidget {
                   ),
                   Text(
                     S.of(context).app_name,
+                    //   S.of(context).app_name,
                     style: TextStyle(
                       fontSize: 21.0,
                       fontFamily: 'Rubik',
@@ -66,7 +140,7 @@ class LoginView extends ConsumerWidget {
                 children: [
                   TextField(
                     keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
+                    textInputAction: loginState.formState == LoginFormState.forgot ? TextInputAction.done : TextInputAction.next,
                     cursorColor: Theme.of(context).accentColor,
                     decoration: InputDecoration(
                       hintText: S.of(context).lbl_email,
@@ -81,7 +155,7 @@ class LoginView extends ConsumerWidget {
                   ),
                   AnimatedContainer(
                     duration: Duration(milliseconds: 200),
-                    height: (loginState.formState == LoginFormState.login || loginState.formState == LoginFormState.register) ? 73.0 : 0.0,
+                    height: loginFormLayout.showPasswordField ? 73.0 : 0.0,
                     child: SingleChildScrollView(
                       physics: NeverScrollableScrollPhysics(),
                       child: Column(
@@ -92,7 +166,7 @@ class LoginView extends ConsumerWidget {
                           ),
                           TextField(
                             obscureText: true,
-                            textInputAction: TextInputAction.done,
+                            textInputAction: loginState.formState == LoginFormState.login ? TextInputAction.done : TextInputAction.next,
                             cursorColor: Theme.of(context).accentColor,
                             decoration: InputDecoration(
                               hintText: S.of(context).lbl_password,
@@ -111,7 +185,7 @@ class LoginView extends ConsumerWidget {
                   ),
                   AnimatedContainer(
                     duration: Duration(milliseconds: 200),
-                    height: loginState.formState == LoginFormState.register ? 73.0 : 0.0,
+                    height: loginFormLayout.showPasswordRepeatField ? 73.0 : 0.0,
                     child: SingleChildScrollView(
                       physics: NeverScrollableScrollPhysics(),
                       child: Column(
@@ -154,11 +228,7 @@ class LoginView extends ConsumerWidget {
                   ),
                   if (MediaQuery.of(context).viewInsets.bottom == 0)
                     Buttons.RoundedButton(
-                      value: loginState.formState == LoginFormState.register
-                          ? S.of(context).lbl_register
-                          : loginState.formState == LoginFormState.login
-                              ? S.of(context).lbl_login
-                              : S.of(context).lbl_forgot,
+                      value: loginFormLayout.buttonLabel,
                       onPressed: () {
                         print('hi there');
                       },
@@ -175,20 +245,8 @@ class LoginView extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Buttons.TextButton(
-                      onPressed: () {
-                        context.read(_loginViewModel).setFormState(LoginFormState.register);
-                      },
-                      value: S.of(context).btn_createAccount,
-                      color: Color(0xFF808080),
-                    ),
-                    Buttons.TextButton(
-                      onPressed: () {
-                        context.read(_loginViewModel).setFormState(LoginFormState.forgot);
-                      },
-                      value: S.of(context).btn_forgotPassword,
-                      color: Color(0xFF808080),
-                    ),
+                    loginFormLayout.leftButton,
+                    loginFormLayout.rightButton,
                   ],
                 ),
               ),
