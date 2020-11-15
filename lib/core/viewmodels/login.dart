@@ -2,11 +2,7 @@ import 'package:flutter_riverpod/all.dart';
 import 'package:nuntium/core/services/auth/auth.dart';
 import 'package:nuntium/core/services/locator.dart';
 
-enum LoginFormState {
-  login,
-  register,
-  forgot
-}
+enum LoginFormState { login, register, forgot }
 
 class LoginState {
   final String email;
@@ -19,14 +15,11 @@ class LoginState {
     this.formState = LoginFormState.login,
   });
 
-  factory LoginState.clone(LoginState state,
-      { String email, String error, LoginFormState formState}) =>
-      LoginState(
+  factory LoginState.clone(LoginState state, {String email, String error, LoginFormState formState}) => LoginState(
         email: email ?? state.email,
         error: error ?? state.error,
         formState: formState ?? state.formState,
       );
-
 }
 
 class LoginViewModel extends StateNotifier<LoginState> {

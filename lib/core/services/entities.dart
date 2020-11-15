@@ -6,7 +6,7 @@ class Error extends Response {
   List<String> errors;
 
   Error({this.errors});
-  factory Error.fromJson(Map<String, dynamic> json, {int status}){
+  factory Error.fromJson(Map<String, dynamic> json, {int status}) {
     Error error = Error(
       errors: json['errors'],
     );
@@ -16,10 +16,10 @@ class Error extends Response {
 }
 
 class Account extends Response {
-  String uuid,email,name;
+  String uuid, email, name;
 
   Account({this.uuid, this.email, this.name});
-  factory Account.fromJson(Map<String, dynamic> json, {status = 200}){
+  factory Account.fromJson(Map<String, dynamic> json, {status = 200}) {
     Account account = Account(
       uuid: json['uuid'],
       email: json['email'],

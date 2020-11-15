@@ -5,15 +5,9 @@ final lightTheme = ThemeData.light().copyWith(
   primaryColor: Color(0xFF62BC8F),
   accentColor: Color(0xFF62BC8F),
   primaryTextTheme: TextTheme(
-    bodyText1: TextStyle(
-        color: Color(0xFF000000)
-    ),
-    bodyText2: TextStyle(
-        color: Color(0xFF000000)
-    ),
-    headline6: TextStyle(
-        color: Color(0xFF000000)
-    ),
+    bodyText1: TextStyle(color: Color(0xFF000000)),
+    bodyText2: TextStyle(color: Color(0xFF000000)),
+    headline6: TextStyle(color: Color(0xFF000000)),
   ),
 );
 

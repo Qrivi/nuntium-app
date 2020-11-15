@@ -43,8 +43,7 @@ class _TextButtonState extends State<TextButton> {
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Text(
             this.widget.value,
-            style: TextStyle(
-                color: this.widget.color ?? Theme.of(context).accentColor),
+            style: TextStyle(color: this.widget.color ?? Theme.of(context).accentColor),
           ),
         ),
       ),
