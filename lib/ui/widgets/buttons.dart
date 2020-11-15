@@ -43,6 +43,7 @@ class _TextButtonState extends State<TextButton> {
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Text(
             this.widget.value,
+            textDirection: TextDirection.ltr,
             style: TextStyle(color: this.widget.color ?? Theme.of(context).accentColor),
           ),
         ),
@@ -74,6 +75,7 @@ class _RoundedButtonState extends State<RoundedButton> {
           ? FlatButton(
               child: Text(
                 widget.value.toUpperCase(),
+                textDirection: TextDirection.ltr,
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
@@ -125,6 +127,7 @@ class _RoundedButtonState extends State<RoundedButton> {
                     child: Center(
                       child: Text(
                         widget.value.toUpperCase(),
+                        textDirection: TextDirection.ltr,
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
