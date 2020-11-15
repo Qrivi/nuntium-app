@@ -1,0 +1,36 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 14
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: 1.22.4
+
+      - name: Checkout Project
+        uses: actions/checkout@v2
+
+      - name: Download Dependencies
+        run: flutter pub get
+
+      - name: Verify Formatting
+        run: flutter format lib test --set-exit-if-changed --line-length 500
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build Android Project
+        run: flutter build apk
+
+      - name: Build iOS Project
+        run: flutter build ios --release --no-codesign
