@@ -113,7 +113,7 @@ class LoginView extends ConsumerWidget {
                   ),
                   Text(
                     S.of(context).app_name,
-                    //   S.of(context).app_name,
+                    textDirection: TextDirection.ltr,
                     style: TextStyle(
                       fontSize: 21.0,
                       fontFamily: 'Rubik',
@@ -220,6 +220,7 @@ class LoginView extends ConsumerWidget {
                       padding: const EdgeInsets.only(top: 15.0),
                       child: Text(
                         loginState.error,
+                        textDirection: TextDirection.ltr,
                         style: TextStyle(
                           color: Colors.orange,
                         ),
