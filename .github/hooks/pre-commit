@@ -1,4 +1,4 @@
 #!/bin/bash
 
 printf "\033[0;34mVerifying code formatting and style compliance...\n\033[0m"
-flutter format lib --line-length 500
+flutter format lib test --line-length 500
