@@ -1,6 +1,9 @@
-name: CI
+name: CI - archive
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -22,12 +25,6 @@ jobs:
 
       - name: Download Dependencies
         run: flutter pub get
-
-      - name: Verify Formatting
-        run: flutter format lib test --set-exit-if-changed --line-length 500
-
-      - name: Run Tests
-        run: flutter test
 
       - name: Build Android Project
         run: flutter build apk --release
