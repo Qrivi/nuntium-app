@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  archive:
     runs-on: macos-latest
 
     steps:
